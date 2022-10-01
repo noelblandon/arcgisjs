@@ -85,7 +85,7 @@
 });*/ //tutorial 2 - basemap 3d
 
 //tutorial 3
-require([
+/*require([
     "esri/config",
     "esri/Map", 
     "esri/views/MapView",
@@ -123,4 +123,42 @@ require([
       });
 
       view.ui.add(basemapGallery, "top-right"); 
+});*/ //change map
+
+//tutorial 4
+
+require([
+    "esri/config",
+    "esri/Map", 
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+],function (esriConfig,Map, MapView, FeatureLayer) {
+    esriConfig.apiKey = "AAPK07c104ca1d9e423da27d05fa4f68ce58omCuIjvz_rXDeL2nlwXdgWn99p6sQrhLLg1hN00pSqrK6hKPbSWuuRS_galj0ejG";
+
+    const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-118.80543,34.02700],
+        zoom: 13
+      });
+
+      //Trailheads feature layer (points)
+        const trailheadsLayer = new FeatureLayer({
+            url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"
+        });
+
+        map.add(trailheadsLayer);
+        //Trails feature layer (lines)
+        const trailsLayer = new FeatureLayer({
+            url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"
+        });
+
+        map.add(trailsLayer, 0);
+
+        const parksLayer = new FeatureLayer({
+            url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0"
+          });
+
+          map.add(parksLayer, 0);
+
 });
